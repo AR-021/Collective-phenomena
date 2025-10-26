@@ -7,14 +7,20 @@ Understanding how simple interaction rules can produce complex, emergent motion.
  technical (vectorised MATLAB practice) and conceptual (grasping emergence).
  
  2 Key Concepts from my Reading
+ 
  I'm covering key concepts that cover several pillars of computational ethology:
+ 
  • Three-zone rule set—repulsion, alignment, attraction.
+ 
  • Phase transitions from disorder to order driven by local rules (Vicsek vs. Reynolds vs.
  Couzin).
+ 
  • Active inference and future-state maximisation as alternatives to vectorial “social
  forces”.
+ 
  • Metric vs. Topological neighbourhoods: metric triggers by fixed radius, whereas
  topological uses a fixed number of nearest neighbours— biologically argued to be superior.
+ 
  • Implementation stack: rules for movement, force balance, synchrony vs. asynchrony,
  stochastic noise, boundary conditions and network topology (see Fig. 1).
  
@@ -31,37 +37,50 @@ Understanding how simple interaction rules can produce complex, emergent motion.
  Most early flocking models—including my Couzin implementation—are metric: an agent reacts
  to anyone within a distance r. This is simple but breaks down at variable densities: crowded
  regions overload perception, sparse areas isolate individuals.
+ 
  Topological models instead process a fixed number (e.g. 7) of nearest neighbours regardless
  of distance, matching starling data and offering robustness. Recent ABM work therefore mixes
  or fully replaces metric radii with nearest-neighbour sets. My code remains metric because it
  maps directly to the classical three-zone diagram and was ideal for first-principles learning.
  
  4.1 agent_simulation.m
+ 
  Purpose: generate positions and headings for N agents over T steps. Each loop cycle executes
  the Couzin rule hierarchy, limited field of view, bounded turning rate and reflective wall.
  Design choices
+ 
  • Vectorised distance matrix for O(N2) neighbour lookup.
+ 
  • Sector-test with acos to enforce visual angle.
+ 
  • Separate boolean masks for repulsion, orientation, attraction zones.
+ 
  • Optional Gaussian noise err to study robustness.
 
   4.2 compute_metrics.m
+  
  ComputespolarisationP(t)andclusteringC(t) thensaves the twoPNGs. Network
- connectivityemploysMATLAB’sgraph/conncomputilities.
+ connectivity employs MATLAB’s graph/conn computilities.
 
   4.3 animate_agents.m
+  
  Renders a quiver plot per frame and can export GIF or MP4. I tweaked colours and head-size
  for visibility
 
   4.4 demo_analysis.m
- Conveniencewrappertyingeverythingtogether
+  
+ Convenience wrapper tying everything together.
 
   5 Global Order Parameters
+  
  Interpretation Polarisation approaching one indicates almost every heading is aligned; clus
 tering near one confirms all agents share a single connected component.
+
  6 Results
+ 
  Qualitatively, agents begin in a swirling mill, undergo intermittent fragmentation, and finally
- lock into a travelling band at t ≈ 120s. Quantitatively, Fig. 4 shows both P and C saturating.
+ lock into a travelling band at t ≈ 120s. 
+ Quantitatively,the result shows both P and C saturating.
  Milling emerges when attraction outweighs orientation yet vision is wide—a parameter slice
  noted in my notes.
  
