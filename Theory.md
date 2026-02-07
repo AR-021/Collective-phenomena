@@ -27,3 +27,6 @@ Enhanced Foraging: Groups can locate resources faster and share information abou
 Locomotion Efficiency: Animals save energy by moving in specific formations (e.g., V-shaped flocking, drafting). 
 These collective behaviors are often described as being "more than the sum of their parts," where the group achieves a level of performance or efficiency that no individual could achieve alone. 
 
+
+#The different categories of collective phenomena in animals, herds, and schools include:
+Collective phenomena in animals, often described as self-organized behavior, involve the coordination of large groups, allowing them to produce complex, emergent, group-level patterns from simple local interactions. These phenomena are generally categorized by the nature of their movement, structure, or function, often modeled as swarm-like aggregations, milling, or polarized groups. 
